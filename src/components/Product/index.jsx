@@ -1,13 +1,30 @@
+import { useState } from 'react';
+
 export const Product = ({ myName, price }) => {
-  const handleClick = () => {
-    console.log(`Koupil sis ${myName}`);
-  };
+  const [count, setCount] = useState(1);
+
   return (
     <div className="product">
       <h3>{myName}</h3>
       <p>{price} Kč</p>
-      {price > 50000 ? <p>Drahé</p> : <p>Levné</p>}
-      <button onClick={handleClick}>Koupit</button>
+      <div>
+        <button
+          onClick={() => {
+            setCount(count - 1);
+          }}
+        >
+          -
+        </button>
+        {count}
+        <button
+          onClick={() => {
+            setCount(count + 1);
+          }}
+        >
+          +
+        </button>
+        <p>Cena celkem: {price * count},- Kč</p>
+      </div>
     </div>
   );
 };
